@@ -18,7 +18,7 @@ class GoldApiRepository {
             }
     }
 
-    fun getGolds(callBack: GoldCallBack) {
+    fun getData(callBack: GoldCallBack) {
         RetrofitService.api.getGolds().enqueue(object : Callback<GoldModel> {
             override fun onResponse(call: Call<GoldModel>, response: Response<GoldModel>) {
                 if (response.isSuccessful && response.body() != null) {

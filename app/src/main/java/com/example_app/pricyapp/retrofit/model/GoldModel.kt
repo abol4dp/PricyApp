@@ -14,7 +14,7 @@ data class GoldModel(
 data class Alldata(
 
     val golds : List<ContentModel>,
-    val currency: List<ContentModel>
+    val currencies: List<ContentModel>
 
 
 )

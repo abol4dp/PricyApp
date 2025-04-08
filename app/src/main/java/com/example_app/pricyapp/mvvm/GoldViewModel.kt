@@ -15,11 +15,16 @@ class GoldViewModel : ViewModel() {
     private val _errorMassage = MutableLiveData<String>()
     val errorMassage: LiveData<String> get() = _errorMassage
 
+    private val _currencyData =MutableLiveData<GoldModel>()
+    val currencyData: LiveData<GoldModel>get() = _currencyData
+
 
     fun fetchGoldData() {
-        GoldApiRepository.instance.getGolds(object : GoldCallBack {
+        GoldApiRepository.instance.getData(object : GoldCallBack {
             override fun onSuccess(data: GoldModel) {
-                _goldData.value = data //
+                _goldData.value = data
+                _currencyData.value = data
+
             }
 
             override fun onNotSuccess(message: String) {
