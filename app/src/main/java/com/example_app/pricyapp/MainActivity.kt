@@ -15,70 +15,25 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.navigation.compose.rememberNavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.navcomponent.NavController
 import com.example_app.pricyapp.retrofit.model.ContentModel
 
 class MainActivity : ComponentActivity() {
-    private val viewModel: GoldViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.fetchGoldData()
+
 
         setContent {
-            GoldScreen(viewModel = viewModel)
+            val navController = rememberNavController()
+            NavController(navController)
+
+
         }
     }
-}
-
-@Composable
-fun GoldScreen(viewModel: GoldViewModel) {
-    val goldData by viewModel.goldData.observeAsState()
-    val error by viewModel.errorMassage.observeAsState()
-    val currencyData by viewModel.currencyData.observeAsState()
-
-    if (goldData != null) {
-        val golds = goldData?.data?.golds ?: emptyList()
-
-        LazyColumn {
-            items(golds) { gold ->
-                goldItem(gold)
-            }
-        }
-
-    }
-
-    if (currencyData != null) {
-        val currency = currencyData?.data?.currencies ?: emptyList()
-
-        LazyColumn {
-            items(currency) { currency ->
-               currencyItem(currency = currency)
-            }
-
-        }
-
-    }
-
-}
-@Composable
-fun currencyItem(currency: ContentModel) {
-    Column {
-        Text(text = currency.label, style = MaterialTheme.typography.bodyLarge)
-        Text(text = "قیمت: ${currency.price} تومان", style = MaterialTheme.typography.bodySmall)
-
-}
-}
-@Composable
-fun goldItem(gold: ContentModel ) {
-    Column {
-        Text(text = gold.label, style = MaterialTheme.typography.bodyLarge)
-        Text(text = "قیمت: ${gold.price} تومان", style = MaterialTheme.typography.bodySmall)
-
-
-    }
-
-
 }
 
 
