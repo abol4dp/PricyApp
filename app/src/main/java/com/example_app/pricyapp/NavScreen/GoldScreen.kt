@@ -16,6 +16,7 @@ fun GoldScreen(navController: NavHostController) {
     val viewModel = SharedViewModel.viewModel
 
     val goldData by viewModel.goldData.observeAsState()
+    val error by viewModel.errorMassage.observeAsState()
 
     viewModel.fetchGoldData()
 
@@ -35,5 +36,16 @@ fun GoldScreen(navController: NavHostController) {
 
         }
     }
-}
+}else{
+        if (!error.isNullOrEmpty()) {
+            Text(
+                text = "خطا: $error",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.error
+            )
+
+
+        }
+
+    }
 }

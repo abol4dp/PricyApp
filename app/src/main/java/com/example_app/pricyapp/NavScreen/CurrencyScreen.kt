@@ -21,11 +21,12 @@ import com.example_app.pricyapp.retrofit.model.SharedViewModel
 fun CurrencyScreen(navController: NavController) {
     val viewModel = SharedViewModel.viewModel
     val currencyData by viewModel.currencyData.observeAsState()
+    val error by viewModel.errorMassage.observeAsState()
 
     viewModel.fetchGoldData()
 
     if (currencyData != null) {
-        val currency = currencyData?.data?.currencies?: emptyList()
+        val currency = currencyData?.data?.currencies ?: emptyList()
 
         LazyColumn {
             items(currency) { currency ->
@@ -39,7 +40,20 @@ fun CurrencyScreen(navController: NavController) {
 
             }
         }
+    }else{
+        if (!error.isNullOrEmpty()) {
+            Text(
+                text = "خطا: $error",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.error
+            )
+
+
+        }
+
     }
+
+
 }
 
 

@@ -9,7 +9,8 @@ import com.example_app.pricyapp.retrofit.model.GoldModel
 
  class GoldViewModel : ViewModel() {
 
-    private val _goldData = MutableLiveData<GoldModel>()
+
+     private val _goldData = MutableLiveData<GoldModel>()
     val goldData: LiveData<GoldModel> get() = _goldData
 
     private val _errorMassage = MutableLiveData<String>()
