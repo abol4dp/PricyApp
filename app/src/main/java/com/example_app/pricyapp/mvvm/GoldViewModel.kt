@@ -7,7 +7,7 @@ import com.example_app.pricyapp.retrofit.GoldApiRepository
 import com.example_app.pricyapp.retrofit.GoldCallBack
 import com.example_app.pricyapp.retrofit.model.GoldModel
 
-class GoldViewModel : ViewModel() {
+ class GoldViewModel : ViewModel() {
 
     private val _goldData = MutableLiveData<GoldModel>()
     val goldData: LiveData<GoldModel> get() = _goldData
@@ -20,6 +20,7 @@ class GoldViewModel : ViewModel() {
 
 
     fun fetchGoldData() {
+
         GoldApiRepository.instance.getData(object : GoldCallBack {
             override fun onSuccess(data: GoldModel) {
                 _goldData.value = data
@@ -36,4 +37,6 @@ class GoldViewModel : ViewModel() {
             }
         })
     }
+
+
 }

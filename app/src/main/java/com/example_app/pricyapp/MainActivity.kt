@@ -19,13 +19,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
 import com.example_app.pricyapp.navcomponent.NavController
 import com.example_app.pricyapp.retrofit.model.ContentModel
+import com.example_app.pricyapp.retrofit.model.SharedViewModel
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        SharedViewModel.viewModel = GoldViewModel()
 
         setContent {
             val navController = rememberNavController()
