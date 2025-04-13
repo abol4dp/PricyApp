@@ -7,12 +7,13 @@ import androidx.navigation.compose.composable
 import com.example_app.pricyapp.NavScreen.GoldScreen
 import com.example_app.pricyapp.NavScreen.HomeScreen
 import com.example_app.pricyapp.NavScreen.CurrencyScreen
+import com.example_app.pricyapp.mvvm.GoldViewModel
 
 @Composable
-fun NavController (navController: NavHostController ){
-  NavHost(navController = navController, startDestination = "homescreen"){
+fun NavController(navController: NavHostController, viewModel: GoldViewModel) {
+    NavHost(navController = navController, startDestination = "homescreen") {
         composable("homescreen") { HomeScreen(navController) }
-      composable("goldscreen") { GoldScreen ( navController) }
+        composable("goldscreen") { GoldScreen(navController) }
         composable("currencyscreen") { CurrencyScreen(navController) }
 
 

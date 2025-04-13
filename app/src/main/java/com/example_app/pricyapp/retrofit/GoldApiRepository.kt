@@ -4,22 +4,16 @@ import com.example_app.pricyapp.retrofit.model.GoldModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class GoldApiRepository {
+class GoldApiRepository @Inject constructor(
 
-    companion object {
-        private var apiRepository: GoldApiRepository? = null
-        val instance: GoldApiRepository
-            get() {
-                if (apiRepository == null) {
-                    apiRepository = GoldApiRepository()
-                }
-                return apiRepository!!
-            }
-    }
+    private val apiService: GoldApiService
+) {
+
 
     fun getData(callBack: GoldCallBack) {
-        RetrofitService.api.getGolds().enqueue(object : Callback<GoldModel> {
+        apiService.getGolds().enqueue(object : Callback<GoldModel> {
             override fun onResponse(call: Call<GoldModel>, response: Response<GoldModel>) {
                 if (response.isSuccessful && response.body() != null) {
                     callBack.onSuccess(response.body()!!)

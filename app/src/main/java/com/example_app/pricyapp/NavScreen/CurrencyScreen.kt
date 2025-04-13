@@ -8,23 +8,26 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
 import com.example_app.pricyapp.retrofit.model.ContentModel
 import com.example_app.pricyapp.retrofit.model.GoldModel
-import com.example_app.pricyapp.retrofit.model.SharedViewModel
+
 
 
 @Composable
 fun CurrencyScreen(navController: NavController) {
-    val viewModel = SharedViewModel.viewModel
+    val viewModel: GoldViewModel = hiltViewModel()
     val currencyData by viewModel.currencyData.observeAsState()
     val error by viewModel.errorMassage.observeAsState()
 
-    viewModel.fetchGoldData()
-
+    LaunchedEffect(Unit) {
+        viewModel.fetchGoldData()
+    }
     if (currencyData != null) {
         val currency = currencyData?.data?.currencies ?: emptyList()
 

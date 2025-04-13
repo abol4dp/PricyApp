@@ -1,3 +1,5 @@
+import dagger.hilt.android.plugin.HiltGradlePlugin
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -63,6 +65,8 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.hilt.navigation.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
