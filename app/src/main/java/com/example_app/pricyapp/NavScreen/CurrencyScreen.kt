@@ -1,7 +1,5 @@
 package com.example_app.pricyapp.NavScreen
 
-import android.icu.number.Precision.currency
-import android.view.View
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,16 +12,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
-import com.example_app.pricyapp.retrofit.model.ContentModel
-import com.example_app.pricyapp.retrofit.model.GoldModel
-
 
 
 @Composable
 fun CurrencyScreen(navController: NavController) {
     val viewModel: GoldViewModel = hiltViewModel()
     val currencyData by viewModel.currencyData.observeAsState()
-    val error by viewModel.errorMassage.observeAsState()
+    val error by viewModel.errorMessage.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchGoldData()

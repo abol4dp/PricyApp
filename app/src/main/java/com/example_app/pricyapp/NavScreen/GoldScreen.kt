@@ -18,7 +18,7 @@ import com.example_app.pricyapp.mvvm.GoldViewModel
 fun GoldScreen(navController: NavHostController) {
     val viewModel: GoldViewModel = hiltViewModel()
     val goldData by viewModel.goldData.observeAsState()
-    val error by viewModel.errorMassage.observeAsState()
+    val error by viewModel.errorMessage.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchGoldData()

@@ -12,19 +12,20 @@ class GoldApiRepository @Inject constructor(
 ) {
 
 
-    fun getData(callBack: GoldCallBack) {
-        apiService.getGolds().enqueue(object : Callback<GoldModel> {
-            override fun onResponse(call: Call<GoldModel>, response: Response<GoldModel>) {
-                if (response.isSuccessful && response.body() != null) {
-                    callBack.onSuccess(response.body()!!)
-                } else {
-                    callBack.onNotSuccess("Response was not successful or empty body")
-                }
-            }
+    suspend fun getData(): Result<GoldModel> {
+        return try {
+            val response = apiService.getGolds()
+            Result.success(response)
 
-            override fun onFailure(call: Call<GoldModel>, t: Throwable) {
-                callBack.onFailure(t)
-            }
-        })
+
+        } catch (e: Exception) {
+
+            Result.failure(e)
+        }
+
+
     }
+
+
 }
+

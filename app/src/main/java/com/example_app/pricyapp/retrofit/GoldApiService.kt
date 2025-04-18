@@ -8,10 +8,10 @@ interface GoldApiService {
 
     @GET("currencies")
 
-    fun getGolds(
+   suspend fun getGolds(
 
 
-    ):Call<GoldModel>
+    ): GoldModel
 
 
 }
