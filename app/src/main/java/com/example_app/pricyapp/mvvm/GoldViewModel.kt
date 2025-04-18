@@ -27,26 +27,30 @@ class GoldViewModel @Inject constructor(
     private val _currencyData = MutableLiveData<GoldModel>()
     val currencyData: LiveData<GoldModel> get() = _currencyData
 
+    private val _cryptoData = MutableLiveData<GoldModel>()
+    val cryptoData: LiveData<GoldModel> get() = _cryptoData
 
-  fun fetchGoldData() {
 
-viewModelScope.launch ( Dispatchers.IO ){
-try {
-    val result = repository.getData()
-    result.onSuccess {data ->
-        _goldData.postValue(data)
-        _currencyData.postValue(data)
-    }.onFailure {error ->
-        _errorMessage.postValue(error.message ?: "Unknown Error")
+    fun fetchGoldData() {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = repository.getData()
+                result.onSuccess { data ->
+                    _goldData.postValue(data)
+                    _currencyData.postValue(data)
+                    _cryptoData.postValue(data)
+                }.onFailure { error ->
+                    _errorMessage.postValue(error.message ?: "Unknown Error")
+                }
+
+            } catch (e: Exception) {
+                _errorMessage.postValue(e.message ?: "Unknown Error")
+            }
+        }
+
+
     }
-
-}catch (e : Exception){
-    _errorMessage.postValue(e.message ?: "Unknown Error")
-}
-}
-
-
-}
 }
 
 
