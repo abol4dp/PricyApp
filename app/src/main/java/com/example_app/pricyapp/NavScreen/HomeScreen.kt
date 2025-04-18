@@ -30,6 +30,12 @@ fun HomeScreen(navController: NavController) {
             Button(onClick = { navController.navigate("goldscreen") }) {
                 Text("طلا و سکه")
             }
+
+            Button(onClick = { navController.navigate("cryptoscreen") }) {
+                Text("ارز دیجیتال")
+            }
+
+
         }
     }
 
