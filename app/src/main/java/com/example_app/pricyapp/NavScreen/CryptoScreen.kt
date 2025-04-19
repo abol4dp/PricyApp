@@ -13,12 +13,13 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+
 
 @Composable
 fun CryptoScreen(navController: NavController){
 val viewModel : GoldViewModel = hiltViewModel()
 val cryptoData by viewModel.cryptoData.observeAsState()
+    val error by viewModel.errorMessage.observeAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchGoldData()
@@ -50,9 +51,15 @@ val cryptoData by viewModel.cryptoData.observeAsState()
 
         }
 
+    }else {
+        if (!error.isNullOrEmpty()) {
+            Text(
+                text = "خطا: $error",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.error
+            )
+        }
+
+
     }
-
-
-
-
 }

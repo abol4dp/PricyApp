@@ -1,6 +1,5 @@
-package com.example_app.pricyapp.di
+package com.example_app.pricyapp.retrofit
 
-import com.example_app.pricyapp.retrofit.GoldApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,6 +23,5 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGoldApiService(retrofit: Retrofit): GoldApiService =
-        retrofit.create(GoldApiService::class.java)
+    fun provideGoldApiService(retrofit: Retrofit): GoldApiService = retrofit.create(GoldApiService::class.java)
 }
