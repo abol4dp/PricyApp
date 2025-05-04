@@ -28,7 +28,7 @@ fun CryptoScreen(navController: NavController) {
 
 
     if (cryptoData != null) {
-        val crypto = cryptoData!!.data?.cryptocurrencies ?: emptyList()
+        val crypto = cryptoData!!.data.cryptocurrencies ?: emptyList()
 
         LazyColumn {
 
