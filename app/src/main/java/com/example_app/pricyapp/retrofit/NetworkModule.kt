@@ -24,4 +24,5 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideGoldApiService(retrofit: Retrofit): GoldApiService = retrofit.create(GoldApiService::class.java)
+    fun provideTimeApiService(retrofit: Retrofit): GoldApiService = retrofit.create(GoldApiService::class.java)
 }

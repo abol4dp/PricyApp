@@ -1,5 +1,7 @@
 package com.example_app.pricyapp.retrofit.model
 
+import com.google.gson.annotations.SerializedName
+
 data class GoldModel(
 
     val message: String,
@@ -23,3 +25,19 @@ data class ContentModel(
 
 
 )
+
+data class DateModel(
+    val date: Date,
+    val message: String
+
+)
+
+data class Date(
+    @SerializedName("F") val month: String,
+    @SerializedName("Y") val year: String,
+    @SerializedName("I") val day: String,
+    @SerializedName("J") val dayOfMonth: String
+
+
+)
+

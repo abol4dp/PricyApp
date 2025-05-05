@@ -14,4 +14,11 @@ interface GoldApiService {
     ): GoldModel
 
 
+    suspend fun getTimes(
+
+
+    ):GoldModel
+
+
+
 }
