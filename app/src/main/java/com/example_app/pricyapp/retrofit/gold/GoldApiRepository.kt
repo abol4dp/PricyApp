@@ -1,9 +1,6 @@
-package com.example_app.pricyapp.retrofit
+package com.example_app.pricyapp.retrofit.gold
 
 import com.example_app.pricyapp.retrofit.model.GoldModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
 class GoldApiRepository @Inject constructor(

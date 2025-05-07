@@ -1,8 +1,6 @@
 package com.example_app.pricyapp.NavScreen
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,32 +15,80 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
-import androidx.compose.material3.SegmentedButtonDefaults.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.InspectableModifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.R
+import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.retrofit.model.DateModel
 import com.example_app.pricyapp.ui.theme.ButtonColor
 import com.example_app.pricyapp.ui.theme.mainBackColor
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController , viewModel: GoldViewModel) {
     CustomButton(navController)
+    CustomTime(viewModel)
 
+
+}
+@Composable
+fun CustomTime(viewModel: GoldViewModel) {
+    val viewModel: GoldViewModel = hiltViewModel()
+    val timeData by viewModel.timeData.collectAsState()
+    val error by viewModel.errorMessage.collectAsState()
+
+    // فراخوانی fetchTimeData هنگام بارگذاری کامپوزابل
+    LaunchedEffect(Unit) {
+        viewModel.fetchTimeData()
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 32.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        when {
+            timeData != null -> {
+
+                val date = timeData?.date
+                Text(
+                    text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ${date?.Y_value}",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
+
+            error != null -> {
+                Text(
+                    text = "خطا: $error",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+
+            else -> {
+                CircularProgressIndicator()
+            }
+        }
+    }
 }
 
 
 @Composable
-
 fun CustomButton(navController: NavController) {
     Box(
         modifier = Modifier
@@ -160,6 +206,16 @@ fun CustomButton(navController: NavController) {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

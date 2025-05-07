@@ -1,11 +1,13 @@
 package com.example_app.pricyapp.mvvm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example_app.pricyapp.retrofit.GoldApiRepository
+import com.example_app.pricyapp.retrofit.gold.GoldApiRepository
+import com.example_app.pricyapp.retrofit.model.DateModel
 import com.example_app.pricyapp.retrofit.model.GoldModel
+
+import com.example_app.pricyapp.retrofit.time.TimeApiRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class GoldViewModel @Inject constructor(
-    private val repository: GoldApiRepository
+    private val repository: GoldApiRepository,
+    private val timeRepository: TimeApiRepository
 ) : ViewModel() {
     private val _goldData = MutableStateFlow<GoldModel?>(null)
     val goldData: StateFlow<GoldModel?> get() = _goldData
@@ -29,6 +32,9 @@ class GoldViewModel @Inject constructor(
     private val _cryptoData = MutableStateFlow<GoldModel?>(null)
     val cryptoData: StateFlow<GoldModel?> get() = _cryptoData
 
+    private val _timeData = MutableStateFlow<DateModel?>(null)
+    val timeData: StateFlow<DateModel?> get() = _timeData
+
     fun fetchGoldData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -37,6 +43,7 @@ class GoldViewModel @Inject constructor(
                     _goldData.value = data
                     _currencyData.value = data
                     _cryptoData.value = data
+
                 }.onFailure { error ->
                     _errorMessage.value = error.message ?: "Unknown Error"
                 }
@@ -44,7 +51,28 @@ class GoldViewModel @Inject constructor(
                 _errorMessage.value = e.message ?: "Unknown Error"
             }
         }
+    }// for gold and currency
+
+    fun fetchTimeData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                Log.d("GoldViewModel", "Fetching time data...")
+                val result = timeRepository.getDataTime()
+                result.onSuccess { date ->
+                    Log.d("GoldViewModel", "Time data received and set: $date")
+                    _timeData.value = date
+                }.onFailure { error ->
+                    Log.e("GoldViewModel", "Error fetching time data: ${error.message}")
+                    _errorMessage.value = error.message ?: "Unknown Error"
+                }
+            } catch (e: Exception) {
+                Log.e("GoldViewModel", "Exception in fetchTimeData: ${e.message}")
+                _errorMessage.value = e.message ?: "Unknown Error"
+            }
+        }
     }
+
+
 }
 
 

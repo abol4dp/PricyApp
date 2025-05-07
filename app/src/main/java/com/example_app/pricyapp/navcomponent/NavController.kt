@@ -14,7 +14,7 @@ import com.example_app.pricyapp.mvvm.GoldViewModel
 @Composable
 fun NavController(navController: NavHostController, viewModel: GoldViewModel) {
     NavHost(navController = navController, startDestination = SealedScreenName.Home.Route) {
-        composable(SealedScreenName.Home.Route) { HomeScreen(navController) }
+        composable(SealedScreenName.Home.Route) { HomeScreen(navController,viewModel) }
         composable(SealedScreenName.Gold.Route) { GoldScreen(navController) }
         composable(SealedScreenName.Currency.Route) { CurrencyScreen(navController) }
         composable(SealedScreenName.Crypto.Route) { CryptoScreen(navController) }

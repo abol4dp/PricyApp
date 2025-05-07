@@ -1,5 +1,6 @@
-package com.example_app.pricyapp.retrofit
+package com.example_app.pricyapp.retrofit.gold
 
+import com.example_app.pricyapp.retrofit.time.TimeApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +25,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideGoldApiService(retrofit: Retrofit): GoldApiService = retrofit.create(GoldApiService::class.java)
-    fun provideTimeApiService(retrofit: Retrofit): GoldApiService = retrofit.create(GoldApiService::class.java)
+    @Provides
+    @Singleton
+    fun provideTimeApiService(retrofit: Retrofit): TimeApiService = retrofit.create(TimeApiService::class.java)
 }

@@ -10,11 +10,14 @@ data class GoldModel(
 )
 
 
+
+
+
 data class Alldata(
 
     val golds: List<ContentModel>,
     val currencies: List<ContentModel>,
-    val cryptocurrencies: List<ContentModel>
+    val cryptocurrencies: List<ContentModel>,
 
 )
 
@@ -26,18 +29,6 @@ data class ContentModel(
 
 )
 
-data class DateModel(
-    val date: Date,
-    val message: String
-
-)
-
-data class Date(
-    @SerializedName("F") val month: String,
-    @SerializedName("Y") val year: String,
-    @SerializedName("I") val day: String,
-    @SerializedName("J") val dayOfMonth: String
 
 
-)
 
