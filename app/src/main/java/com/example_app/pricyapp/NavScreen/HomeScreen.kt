@@ -70,6 +70,13 @@ fun CustomTime(viewModel: GoldViewModel) {
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onBackground
                 )
+
+                Text(
+                    text = "${date?.h_value} : ${date?.i_value} ",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+
             }
 
             error != null -> {
@@ -93,8 +100,8 @@ fun CustomButton(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(mainBackColor),
-        contentAlignment = Alignment.BottomCenter
+            //.//background(mainBackColor),
+        ,contentAlignment = Alignment.BottomCenter
     ) {
         Column(
             modifier = Modifier.padding(bottom = 150.dp)
