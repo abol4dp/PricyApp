@@ -26,7 +26,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,10 +38,10 @@ import com.example_app.pricyapp.ui.theme.mainBackColor
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
-    Box (
+    Box(
         modifier = Modifier.background(mainBackColor)
 
-    ){
+    ) {
 
         CustomButton(navController)
         CustomTime(viewModel)
@@ -57,7 +56,7 @@ fun CustomTime(viewModel: GoldViewModel) {
     val timeData by viewModel.timeData.collectAsState()
     val error by viewModel.errorMessage.collectAsState()
 
-    // فراخوانی fetchTimeData هنگام بارگذاری کامپوزابل
+
     LaunchedEffect(Unit) {
         viewModel.fetchTimeData()
     }
@@ -65,21 +64,24 @@ fun CustomTime(viewModel: GoldViewModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 32.dp),
+            .padding(top = 90.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         when {
             timeData != null -> {
 
+
                 val date = timeData?.date
                 Text(
                     text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ",
+                    fontSize = 33.sp,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
                 )
-
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "${date?.H_value} : ${date?.i_value} ",
+                    fontSize = 30.sp,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
                 )
@@ -104,24 +106,37 @@ fun CustomTime(viewModel: GoldViewModel) {
 
 @Composable
 fun CustomButton(navController: NavController) {
+
     Box(
         modifier = Modifier
-            .fillMaxSize()
-        //.//background(mainBackColor),
-        , contentAlignment = Alignment.BottomCenter
+            .fillMaxSize(), contentAlignment = Alignment.BottomCenter
     ) {
         Column(
-            modifier = Modifier.padding(bottom = 150.dp)
+            modifier = Modifier.padding(bottom = 90.dp)
         ) {
+
+
             Button(
-                onClick = { navController.navigate("goldscreen") },
+                onClick = {
+                    navController.navigate("goldscreen")
+                },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(130.dp)
+                    .height(145.dp)
                     .padding(horizontal = 20.dp, vertical = 8.dp),
+
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor),
                 shape = RoundedCornerShape(20.dp)
             ) {
+
+
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow_left),
+                    contentDescription = "Coin Icon",
+                    modifier = Modifier.size(32.dp),
+                    tint = Color.Unspecified
+                )
+
                 Box(modifier = Modifier.fillMaxSize()) {
                     Row(
                         Modifier
@@ -152,11 +167,17 @@ fun CustomButton(navController: NavController) {
                 onClick = { navController.navigate("currencyscreen") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(130.dp)
+                    .height(145.dp)
                     .padding(horizontal = 20.dp, vertical = 8.dp),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
             ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow_left),
+                    contentDescription = "Coin Icon",
+                    modifier = Modifier.size(32.dp),
+                    tint = Color.Unspecified
+                )
                 Box(modifier = Modifier.fillMaxSize()) {
                     Row(
                         modifier = Modifier
@@ -187,11 +208,17 @@ fun CustomButton(navController: NavController) {
                 onClick = { navController.navigate("cryptoscreen") },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(130.dp)
+                    .height(145.dp)
                     .padding(horizontal = 20.dp, vertical = 8.dp),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
             ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.arrow_left),
+                    contentDescription = "Coin Icon",
+                    modifier = Modifier.size(32.dp),
+                    tint = Color.Unspecified
+                )
                 Box(modifier = Modifier.fillMaxSize()) {
                     Row(
                         modifier = Modifier
