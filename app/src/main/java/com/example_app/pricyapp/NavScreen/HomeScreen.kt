@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,17 +34,23 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.GoldViewModel
-import com.example_app.pricyapp.retrofit.model.DateModel
 import com.example_app.pricyapp.ui.theme.ButtonColor
 import com.example_app.pricyapp.ui.theme.mainBackColor
 
 @Composable
-fun HomeScreen(navController: NavController , viewModel: GoldViewModel) {
-    CustomButton(navController)
-    CustomTime(viewModel)
+fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
+    Box (
+        modifier = Modifier.background(mainBackColor)
+
+    ){
+
+        CustomButton(navController)
+        CustomTime(viewModel)
+    }
 
 
 }
+
 @Composable
 fun CustomTime(viewModel: GoldViewModel) {
     val viewModel: GoldViewModel = hiltViewModel()
@@ -66,15 +73,15 @@ fun CustomTime(viewModel: GoldViewModel) {
 
                 val date = timeData?.date
                 Text(
-                    text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ${date?.Y_value}",
+                    text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = Color.White
                 )
 
                 Text(
-                    text = "${date?.h_value} : ${date?.i_value} ",
+                    text = "${date?.H_value} : ${date?.i_value} ",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = Color.White
                 )
 
             }
@@ -100,8 +107,8 @@ fun CustomButton(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            //.//background(mainBackColor),
-        ,contentAlignment = Alignment.BottomCenter
+        //.//background(mainBackColor),
+        , contentAlignment = Alignment.BottomCenter
     ) {
         Column(
             modifier = Modifier.padding(bottom = 150.dp)

@@ -14,7 +14,8 @@ data class Date(
     @SerializedName("Y") val Y_value: String,
     @SerializedName("j") val j_value: String,
     @SerializedName("l") val l_value: String,
-    @SerializedName("h") val h_value: Int,
-    @SerializedName("i") val i_value: Int
+    @SerializedName("s") val s_value: Int,
+    @SerializedName("i") val i_value: Int,
+    @SerializedName("H") val H_value: Int
 
 )
