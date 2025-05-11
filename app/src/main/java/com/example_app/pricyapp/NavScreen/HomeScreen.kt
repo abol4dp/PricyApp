@@ -1,6 +1,7 @@
 package com.example_app.pricyapp.NavScreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,8 +37,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.ui.theme.ButEffect
 import com.example_app.pricyapp.ui.theme.ButtonColor
 import com.example_app.pricyapp.ui.theme.mainBackColor
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
@@ -107,6 +113,10 @@ fun CustomTime(viewModel: GoldViewModel) {
 @Composable
 fun CustomButton(navController: NavController) {
 
+var isClicked by remember { mutableStateOf<String?>(null) }
+
+
+
     Box(
         modifier = Modifier
             .fillMaxSize(), contentAlignment = Alignment.BottomCenter
@@ -115,16 +125,28 @@ fun CustomButton(navController: NavController) {
             modifier = Modifier.padding(bottom = 90.dp)
         ) {
 
-
+            LaunchedEffect(isClicked) {
+                if (isClicked != null) {
+                    delay(1000)
+                    isClicked = null
+                }
+            }
             Button(
                 onClick = {
+                    isClicked= "Gold"
                     navController.navigate("goldscreen")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(145.dp)
-                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                    .padding(horizontal = 20.dp, vertical = 8.dp)
+                    .border(
+                        width = if (isClicked == "Gold") 1.dp else 0.dp,
+                        color = if (isClicked == "Gold") ButEffect else Color.Transparent,
+                        shape = RoundedCornerShape(20.dp)
+                    )
 
+                 ,
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor),
                 shape = RoundedCornerShape(20.dp)
             ) {
@@ -163,12 +185,23 @@ fun CustomButton(navController: NavController) {
                 }
             }
 
+
+
             Button(
-                onClick = { navController.navigate("currencyscreen") },
+                onClick = {
+                    isClicked = "Currency"
+                    navController.navigate("currencyscreen") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(145.dp)
-                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                    .padding(horizontal = 20.dp, vertical = 8.dp).
+                        border(
+                        width = if (isClicked == "Currency") 1.dp else 0.dp,
+                color = if (isClicked == "Currency") ButEffect else Color.Transparent,
+                shape = RoundedCornerShape(20.dp)
+            )
+
+                ,
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
             ) {
@@ -204,12 +237,22 @@ fun CustomButton(navController: NavController) {
                 }
             }
 
+
+
             Button(
-                onClick = { navController.navigate("cryptoscreen") },
+                onClick = {
+                    isClicked = "Crypto"
+                    navController.navigate("cryptoscreen") },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(145.dp)
-                    .padding(horizontal = 20.dp, vertical = 8.dp),
+                    .padding(horizontal = 20.dp, vertical = 8.dp).
+                border(
+                    width = if (isClicked== "Crypto") 1.dp else 0.dp,
+                    color = if (isClicked == "Crypto") ButEffect else Color.Transparent,
+                    shape = RoundedCornerShape(20.dp)
+                ),
+
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
             ) {
