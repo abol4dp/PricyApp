@@ -13,8 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PricyApp"
         tools:targetApi="31">
+
+        <activity android:name=".ui.theme.ui.MainActivity"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.theme.ui.SplashScreen"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.PricyApp">

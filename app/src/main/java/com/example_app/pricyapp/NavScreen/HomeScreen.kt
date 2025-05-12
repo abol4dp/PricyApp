@@ -128,7 +128,6 @@ var isClicked by remember { mutableStateOf<String?>(null) }
             LaunchedEffect(isClicked) {
                 if (isClicked != null) {
                     delay(1000)
-                    isClicked = null
                 }
             }
             Button(
