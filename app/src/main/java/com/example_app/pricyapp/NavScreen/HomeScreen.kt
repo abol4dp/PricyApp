@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,10 +45,15 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
+
+
+
     Box(
         modifier = Modifier.background(mainBackColor)
 
     ) {
+
+
 
         CustomButton(navController)
         CustomTime(viewModel)
@@ -113,7 +119,7 @@ fun CustomTime(viewModel: GoldViewModel) {
 @Composable
 fun CustomButton(navController: NavController) {
 
-var isClicked by remember { mutableStateOf<String?>(null) }
+    var isClicked by remember { mutableStateOf<String?>(null) }
 
 
 
@@ -132,7 +138,7 @@ var isClicked by remember { mutableStateOf<String?>(null) }
             }
             Button(
                 onClick = {
-                    isClicked= "Gold"
+                    isClicked = "Gold"
                     navController.navigate("goldscreen")
                 },
                 modifier = Modifier
@@ -143,9 +149,7 @@ var isClicked by remember { mutableStateOf<String?>(null) }
                         width = if (isClicked == "Gold") 1.dp else 0.dp,
                         color = if (isClicked == "Gold") ButEffect else Color.Transparent,
                         shape = RoundedCornerShape(20.dp)
-                    )
-
-                 ,
+                    ),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor),
                 shape = RoundedCornerShape(20.dp)
             ) {
@@ -189,18 +193,17 @@ var isClicked by remember { mutableStateOf<String?>(null) }
             Button(
                 onClick = {
                     isClicked = "Currency"
-                    navController.navigate("currencyscreen") },
+                    navController.navigate("currencyscreen")
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(145.dp)
-                    .padding(horizontal = 20.dp, vertical = 8.dp).
-                        border(
+                    .padding(horizontal = 20.dp, vertical = 8.dp)
+                    .border(
                         width = if (isClicked == "Currency") 1.dp else 0.dp,
-                color = if (isClicked == "Currency") ButEffect else Color.Transparent,
-                shape = RoundedCornerShape(20.dp)
-            )
-
-                ,
+                        color = if (isClicked == "Currency") ButEffect else Color.Transparent,
+                        shape = RoundedCornerShape(20.dp)
+                    ),
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
             ) {
@@ -241,16 +244,17 @@ var isClicked by remember { mutableStateOf<String?>(null) }
             Button(
                 onClick = {
                     isClicked = "Crypto"
-                    navController.navigate("cryptoscreen") },
+                    navController.navigate("cryptoscreen")
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(145.dp)
-                    .padding(horizontal = 20.dp, vertical = 8.dp).
-                border(
-                    width = if (isClicked== "Crypto") 1.dp else 0.dp,
-                    color = if (isClicked == "Crypto") ButEffect else Color.Transparent,
-                    shape = RoundedCornerShape(20.dp)
-                ),
+                    .padding(horizontal = 20.dp, vertical = 8.dp)
+                    .border(
+                        width = if (isClicked == "Crypto") 1.dp else 0.dp,
+                        color = if (isClicked == "Crypto") ButEffect else Color.Transparent,
+                        shape = RoundedCornerShape(20.dp)
+                    ),
 
                 shape = RoundedCornerShape(20.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = ButtonColor)
