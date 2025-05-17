@@ -172,7 +172,7 @@ fun CustomButton(navController: NavController) {
                         Text(text = "طلا و سکه", fontSize = 23.sp)
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(
-                            painter = painterResource(id = R.drawable.gold_svgrepo_com),
+                            painter = painterResource(id = R.drawable.banking_coin_svgrepo_com__5_),
                             contentDescription = "Coin Icon",
                             modifier = Modifier.size(32.dp),
                             tint = Color.Unspecified
