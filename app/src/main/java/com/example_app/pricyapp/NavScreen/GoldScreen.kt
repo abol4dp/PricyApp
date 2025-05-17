@@ -1,28 +1,46 @@
 package com.example_app.pricyapp.NavScreen
 
+import android.text.Layout
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalMapOf
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.GoldViewModel
-import java.lang.reflect.Modifier
+import com.example_app.pricyapp.ui.theme.mainBackColor
+import com.example_app.pricyapp.ui.theme.smallfontcolor
 
 
 @Composable
@@ -35,50 +53,111 @@ fun GoldScreen(navController: NavHostController) {
         viewModel.fetchGoldData()
     }
 
-    if (goldData !== null) {
-        val gold = goldData?.data?.golds ?: emptyList()
 
 
-        LazyColumn (
-            modifier = androidx.compose.ui.Modifier.fillMaxSize()
 
-        ){
-            items(gold) { golds ->
-                Box(modifier = androidx.compose.ui.Modifier.
-                            fillMaxSize ()
-                    .padding(top = 80.dp)
-                        .height(50.dp) , contentAlignment = Alignment.CenterEnd) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(mainBackColor)
+            .padding(horizontal = 30.dp),
+        horizontalAlignment = Alignment.End,
+        verticalArrangement = Arrangement.Center
+
+
+    ) {
+
+
+        if (goldData !== null) {
+            val gold = goldData?.data?.golds ?: emptyList()
+
+
+            LazyColumn {
+
+
+                items(gold) { golds ->
 
 
                     Column(
 
+                        modifier = Modifier
+                            .padding(top = 30.dp)
+                            .padding(horizontal = 5.dp),
                     ) {
 
 
                         Text(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(end = 10.dp), textAlign = TextAlign.End,
                             text = golds.label,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = smallfontcolor, fontSize = 15.sp
+
                         )
 
+                        Spacer(modifier = Modifier.height(3.dp))
+
                         Text(
-                            text = "قیمت: ${golds.price} تومان",
-                            style = MaterialTheme.typography.bodySmall
+                            modifier = Modifier.fillMaxSize(),
+                            textAlign = TextAlign.End,
+                            text = " ${golds.price} تومان",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color.White, fontSize = 30.sp
                         )
                     }
                 }
             }
+        } else {
+            if (!error.isNullOrEmpty()) {
+                Text(
+                    text = "خطا: $error",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White, fontSize = 15.sp
+                )
+
+
+            } else
+                CircularProgressIndicator()
         }
-    } else {
-        if (!error.isNullOrEmpty()) {
-            Text(
-                text = "خطا: $error",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.error
-            )
 
-
-        } else
-            CircularProgressIndicator()
 
     }
+
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 20.dp, top = 30.dp)
+
+
+    ) {
+
+        Icon(
+            painter = painterResource(id = R.drawable.chevron_left),
+            contentDescription = "Coin Icon",
+            modifier = Modifier.size(35.dp),
+            tint = Color.Unspecified
+        )
+
+
+    }
+
+
+    Column(
+        modifier = Modifier.fillMaxSize(), Arrangement.Top, Alignment.End
+
+    ) {
+        Text(
+            modifier = Modifier.padding(top = 30.dp, end = 35.dp),
+            text = "طلا و ارز",
+            style = MaterialTheme.typography.labelMedium,
+            color = Color.White, fontSize = 35.sp
+        )
+
+
+    }
+
+
 }
+

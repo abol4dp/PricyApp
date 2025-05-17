@@ -12,3 +12,6 @@ val Pink40 = Color(0xFF7A818E)
 val ButtonColor = Color(0xFF281B53)
 val mainBackColor= Color(0xFF230b36)
 val ButEffect= Color(0xFF133AA4)
+val smallfontcolor= Color(0xFFDCDCDC)
+
+
