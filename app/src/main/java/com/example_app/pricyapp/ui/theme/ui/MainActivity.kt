@@ -29,8 +29,6 @@ class MainActivity : ComponentActivity() {
             val viewModel: GoldViewModel = hiltViewModel()
             val navController = rememberNavController()
             NavController(navController, viewModel)
-
-
         }
     }
 }
