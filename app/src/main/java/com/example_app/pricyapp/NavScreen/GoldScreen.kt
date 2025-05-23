@@ -66,7 +66,10 @@ fun GoldScreen(navController: NavHostController) {
             val gold = goldData?.data?.golds ?: emptyList()
 
 
-            LazyColumn {
+            LazyColumn (
+                modifier = Modifier.padding(bottom = 30.dp)
+
+            ){
 
 
                 items(gold) { golds ->
@@ -129,7 +132,7 @@ fun GoldScreen(navController: NavHostController) {
 
         Icon(
             painter = painterResource(id = R.drawable.chevron_left),
-            contentDescription = "Coin Icon",
+            contentDescription = "icon",
             modifier = Modifier
                 .size(35.dp)
                 .clickable {
