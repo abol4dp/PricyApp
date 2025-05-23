@@ -4,7 +4,9 @@ import android.content.ClipData.Item
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,11 +20,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.mvvm.GoldViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
+import com.example_app.pricyapp.ui.theme.smallfontcolor
 
 
 @Composable
@@ -39,6 +45,7 @@ fun CryptoScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(mainBackColor)
             .padding(horizontal = 30.dp),
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.Center
@@ -47,33 +54,52 @@ fun CryptoScreen(navController: NavController) {
     ) {
 
 
+        if (cryptoData != null) {
+            val crypto = cryptoData!!.data.cryptocurrencies ?: emptyList()
 
 
 
 
+            LazyColumn(
+                modifier = Modifier.padding(bottom = 230.dp)
 
-    if (cryptoData != null) {
-        val crypto = cryptoData!!.data.cryptocurrencies ?: emptyList()
-
-
-
-
-        LazyColumn (
-            modifier = Modifier.padding(bottom = 230.dp)
-
-        ){
+            ) {
 
 
-            items(crypto) { crypto ->
+                items(crypto) { crypto ->
 
-                Column {
+                    Column(
+                        modifier = Modifier
+                            .padding(top = 30.dp)
+                            .padding(horizontal = 5.dp),
+                    ) {
 
-                    Text(
-                        text = crypto.label,
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                        Text(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(end = 10.dp),
+                            textAlign = TextAlign.End,
+                            text = crypto.label,
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = smallfontcolor,
+                            fontSize = 16.sp
+                        )
 
-                    Text(text = ":قیمت${crypto.price}تومان ")
+
+                        Spacer(modifier = Modifier.height(3.dp))
+
+
+                        Text(
+
+                            text = "${crypto.price}تومان ", modifier = Modifier.fillMaxSize(),
+                            textAlign = TextAlign.End,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = Color.White, fontSize = 30.sp
+
+                        )
+
+
+                    }
 
 
                 }
@@ -81,20 +107,17 @@ fun CryptoScreen(navController: NavController) {
 
             }
 
+        } else {
+            if (!error.isNullOrEmpty()) {
+                Text(
+                    text = "خطا: $error",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.error
+                )
+            } else
+                CircularProgressIndicator()
+
 
         }
-
-    } else {
-        if (!error.isNullOrEmpty()) {
-            Text(
-                text = "خطا: $error",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.error
-            )
-        }else
-            CircularProgressIndicator()
-
-
-    }
     }
 }
