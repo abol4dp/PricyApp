@@ -76,7 +76,7 @@ fun CustomTime(viewModel: GoldViewModel) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 90.dp),
+            .padding(top = 70.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         when {
@@ -86,14 +86,14 @@ fun CustomTime(viewModel: GoldViewModel) {
                 val date = timeData?.date
                 Text(
                     text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ",
-                    fontSize = 33.sp,
+                    fontSize = 43.sp,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "${date?.H_value} : ${date?.i_value} ",
-                    fontSize = 30.sp,
+                    fontSize = 32.sp,
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.White
                 )
