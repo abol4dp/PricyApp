@@ -39,7 +39,7 @@ class SplashScreen : ComponentActivity() {
         val videoView = remember {
             VideoView(context).apply {
 
-                setVideoURI(Uri.parse("android.resource://${context.packageName}/${R.raw.app2}"))
+                setVideoURI(Uri.parse("android.resource://${context.packageName}/${R.raw.splashvideo}"))
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
