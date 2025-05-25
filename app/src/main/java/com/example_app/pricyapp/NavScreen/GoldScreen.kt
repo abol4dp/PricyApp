@@ -24,6 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -89,7 +92,11 @@ fun GoldScreen(navController: NavHostController) {
                                 .fillMaxSize()
                                 .padding(end = 10.dp), textAlign = TextAlign.End,
                             text = golds.label,
-                            style = MaterialTheme.typography.bodyLarge,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.thin, FontWeight.Normal)
+                                )
+                            ),
                             color = smallfontcolor, fontSize = 15.sp
 
                         )
@@ -108,7 +115,11 @@ fun GoldScreen(navController: NavHostController) {
                             modifier = Modifier.fillMaxSize(),
                             textAlign = TextAlign.End,
                             text = " $formattedPrice تومان ",
-                            style = MaterialTheme.typography.bodySmall,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.regular, FontWeight.Normal)
+                                )
+                            ),
                             color = Color.White, fontSize = 30.sp
                         )
                     }
@@ -163,8 +174,12 @@ fun GoldScreen(navController: NavHostController) {
     ) {
         Text(
             modifier = Modifier.padding(top = 30.dp, end = 35.dp),
-            text = "طلا و ارز",
-            style = MaterialTheme.typography.labelMedium,
+            text = "طلا و سکه",
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontFamily = FontFamily(
+                    Font(R.font.regular, FontWeight.Normal)
+                )
+            ),
             color = Color.White, fontSize = 35.sp
         )
 

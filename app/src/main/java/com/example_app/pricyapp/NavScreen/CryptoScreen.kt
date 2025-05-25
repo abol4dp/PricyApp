@@ -26,6 +26,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +38,9 @@ import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.GoldViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
+
+
+
 
 
 @Composable
@@ -86,7 +92,11 @@ fun CryptoScreen(navController: NavController) {
                                 .padding(end = 10.dp),
                             textAlign = TextAlign.End,
                             text = crypto.label,
-                            style = MaterialTheme.typography.bodyLarge,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.thin, FontWeight.Normal)
+                                )
+                            ),
                             color = smallfontcolor,
                             fontSize = 16.sp
                         )
@@ -105,7 +115,11 @@ fun CryptoScreen(navController: NavController) {
                             modifier = Modifier.fillMaxSize(),
                             textAlign = TextAlign.End,
                             text = " $formattedPrice  تومان ",
-                            style = MaterialTheme.typography.bodySmall,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.regular, FontWeight.Normal)
+                                )
+                            ),
                             color = Color.White, fontSize = 30.sp
 
                         )
@@ -159,8 +173,12 @@ fun CryptoScreen(navController: NavController) {
         Text(
             modifier = Modifier.padding(top = 30.dp, end = 35.dp),
             text = "ارز دیجیتال",
-            style = MaterialTheme.typography.labelMedium,
-            color = Color.White, fontSize = 35.sp
+            style = MaterialTheme.typography.bodyLarge.copy(
+                fontFamily = FontFamily(
+                    Font(R.font.regular, FontWeight.Normal)
+                )
+            ),
+            color = Color.White, fontSize = 34.sp
         )
 
 
