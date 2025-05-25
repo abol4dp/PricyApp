@@ -1,5 +1,6 @@
 package com.example_app.pricyapp.NavScreen
 
+import android.icu.text.DecimalFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -95,10 +96,18 @@ fun GoldScreen(navController: NavHostController) {
 
                         Spacer(modifier = Modifier.height(3.dp))
 
+                        val priceLong = try {
+                            golds.price.toLong()
+                        } catch (e: NumberFormatException) {
+                            0L
+                        }
+                        val shortPrice = priceLong / 10
+                        val formattedPrice = DecimalFormat("#,###").format(shortPrice)
+
                         Text(
                             modifier = Modifier.fillMaxSize(),
                             textAlign = TextAlign.End,
-                            text = " ${golds.price} تومان",
+                            text = " $formattedPrice تومان ",
                             style = MaterialTheme.typography.bodySmall,
                             color = Color.White, fontSize = 30.sp
                         )
