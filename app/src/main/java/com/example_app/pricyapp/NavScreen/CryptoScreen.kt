@@ -1,6 +1,5 @@
 package com.example_app.pricyapp.NavScreen
 
-import android.content.ClipData.Item
 import android.icu.text.DecimalFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,9 +36,6 @@ import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.GoldViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
-
-
-
 
 
 @Composable
@@ -109,18 +104,17 @@ fun CryptoScreen(navController: NavController) {
                         } catch (e: NumberFormatException) {
                             0L
                         }
-                        val shortPrice = priceLong /10
-                        val formattedPrice = DecimalFormat("#,###").format(shortPrice)
+                        val formattedPrice = DecimalFormat("####").format(priceLong)
                         Text(
                             modifier = Modifier.fillMaxSize(),
                             textAlign = TextAlign.End,
-                            text = " $formattedPrice  تومان ",
+                            text = " $formattedPrice ",
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontFamily = FontFamily(
                                     Font(R.font.regular, FontWeight.Normal)
                                 )
                             ),
-                            color = Color.White, fontSize = 30.sp
+                            color = Color.White, fontSize = 40.sp
 
                         )
                     }

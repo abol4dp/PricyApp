@@ -32,6 +32,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -47,12 +50,10 @@ import kotlinx.coroutines.delay
 fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
 
 
-
     Box(
         modifier = Modifier.background(mainBackColor)
 
     ) {
-
 
 
         CustomButton(navController)
@@ -87,8 +88,12 @@ fun CustomTime(viewModel: GoldViewModel) {
                 Text(
                     text = "${date?.l_value} ${date?.j_value} ${date?.F_value} ",
                     fontSize = 43.sp,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.White
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontFamily = FontFamily(
+                            Font(R.font.regular, FontWeight.Normal)
+                        ),
+                        color = Color.White
+                    )
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
@@ -169,7 +174,16 @@ fun CustomButton(navController: NavController) {
                             .fillMaxSize(),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        Text(text = "طلا و سکه", fontSize = 23.sp)
+                        Text(
+                            text = "طلا و سکه",
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.regular, FontWeight.Normal)
+                                ),
+                                fontSize = 23.sp,
+
+                                )
+                        )
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(
                             painter = painterResource(id = R.drawable.banking_coin_svgrepo_com__5_),
@@ -179,11 +193,17 @@ fun CustomButton(navController: NavController) {
                         )
                     }
                     Text(
-                        text = "قیمت لحظه ای طلا",
-                        fontSize = 18.sp,
+
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp)
+                            .padding(bottom = 30.dp, end = 30.dp),
+                        text = "قیمت لحظه ای طلا",
+                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontFamily = FontFamily(
+                                Font(R.font.regular, FontWeight.Normal)
+                            )
+                        )
                     )
                 }
             }
@@ -220,7 +240,17 @@ fun CustomButton(navController: NavController) {
                             .fillMaxSize(),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        Text(text = "دلار", fontSize = 23.sp)
+                        Text(
+                            text = "دلار",
+                            fontSize = 23.sp,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.regular, FontWeight.Normal)
+                                )
+                            )
+
+
+                        )
                         Spacer(modifier = Modifier.width(8.dp))
                         Icon(
                             painter = painterResource(id = R.drawable.coin_svgrepo_com),
@@ -230,11 +260,18 @@ fun CustomButton(navController: NavController) {
                         )
                     }
                     Text(
-                        text = "قیمت لحظه ای دلار",
-                        fontSize = 18.sp,
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp)
+                            .padding(bottom = 30.dp, end = 30.dp),
+                        text = "قیمت لحظه ای دلار",
+                        fontSize = 18.sp,
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontFamily = FontFamily(
+                                Font(R.font.regular, FontWeight.Normal)
+                            ),
+
+
+                            )
                     )
                 }
             }
@@ -272,8 +309,18 @@ fun CustomButton(navController: NavController) {
                             .fillMaxSize(),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        Text(text = "ارز دیجیتال", fontSize = 23.sp)
+                        Text(
+                            text = "ارز دیجیتال",
+                            fontSize = 23.sp,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontFamily = FontFamily(
+                                    Font(R.font.regular, FontWeight.Normal)
+                                )
+
+                            )
+                        )
                         Spacer(modifier = Modifier.width(8.dp))
+
                         Icon(
                             painter = painterResource(id = R.drawable.bitcoin_svgrepo_com__1_),
                             contentDescription = "btc",
@@ -282,11 +329,18 @@ fun CustomButton(navController: NavController) {
                         )
                     }
                     Text(
-                        text = "قیمت لحظه ای ارز",
-                        fontSize = 18.sp,
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp)
+                            .padding(bottom = 30.dp, end = 30.dp),
+                        text = "قیمت لحظه ای ارز",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontFamily = FontFamily(
+                                Font(R.font.regular, FontWeight.Normal)
+                            ),
+
+                            fontSize = 18.sp,
+
+                            )
                     )
                 }
             }
