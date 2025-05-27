@@ -9,10 +9,10 @@ import com.example_app.pricyapp.NavScreen.GoldScreen
 import com.example_app.pricyapp.NavScreen.HomeScreen
 import com.example_app.pricyapp.NavScreen.CurrencyScreen
 import com.example_app.pricyapp.ext.SealedScreenName
-import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.mvvm.ViewModel
 
 @Composable
-fun NavController(navController: NavHostController, viewModel: GoldViewModel) {
+fun NavController(navController: NavHostController, viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel) {
 
 
     NavHost(navController = navController, startDestination = SealedScreenName.Home.Route) {

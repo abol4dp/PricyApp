@@ -1,5 +1,6 @@
-package com.example_app.pricyapp.retrofit.gold
+package com.example_app.pricyapp.retrofit
 
+import com.example_app.pricyapp.retrofit.gold.GoldApiService
 import com.example_app.pricyapp.retrofit.time.TimeApiService
 import dagger.Module
 import dagger.Provides

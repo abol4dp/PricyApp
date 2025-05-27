@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class GoldViewModel @Inject constructor(
+class ViewModel @Inject constructor(
     private val repository: GoldApiRepository,
     private val timeRepository: TimeApiRepository
 ) : ViewModel() {

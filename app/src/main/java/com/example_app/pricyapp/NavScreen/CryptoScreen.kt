@@ -33,14 +33,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.R
-import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
 
 
 @Composable
 fun CryptoScreen(navController: NavController) {
-    val viewModel: GoldViewModel = hiltViewModel()
+    val viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel = hiltViewModel()
     val cryptoData by viewModel.cryptoData.collectAsState()
     val error by viewModel.errorMessage.collectAsState()
 

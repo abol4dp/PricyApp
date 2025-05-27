@@ -30,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -40,14 +39,14 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example_app.pricyapp.R
-import com.example_app.pricyapp.mvvm.GoldViewModel
+import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.ButEffect
 import com.example_app.pricyapp.ui.theme.ButtonColor
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import kotlinx.coroutines.delay
 
 @Composable
-fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
+fun HomeScreen(navController: NavController, viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel) {
 
 
     Box(
@@ -64,8 +63,8 @@ fun HomeScreen(navController: NavController, viewModel: GoldViewModel) {
 }
 
 @Composable
-fun CustomTime(viewModel: GoldViewModel) {
-    val viewModel: GoldViewModel = hiltViewModel()
+fun CustomTime(viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel) {
+    val viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel = hiltViewModel()
     val timeData by viewModel.timeData.collectAsState()
     val error by viewModel.errorMessage.collectAsState()
 

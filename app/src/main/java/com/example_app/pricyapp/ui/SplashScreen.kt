@@ -1,4 +1,4 @@
-package com.example_app.pricyapp.ui.theme.ui
+package com.example_app.pricyapp.ui
 
 import android.content.Intent
 import android.net.Uri
