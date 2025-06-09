@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -179,7 +180,7 @@ fun CustomButton(navController: NavController) {
                                 fontFamily = FontFamily(
                                     Font(R.font.regular, FontWeight.Normal)
                                 ),
-                                fontSize = 23.sp,
+                                fontSize = 24.sp,
 
                                 )
                         )
@@ -195,10 +196,10 @@ fun CustomButton(navController: NavController) {
 
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp),
+                            .padding(bottom = 30.dp, end = 40.dp),
                         text = "قیمت لحظه ای طلا",
-                        fontSize = 18.sp,
-                        style = MaterialTheme.typography.bodyLarge.copy(
+                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.bodySmall.copy(
                             fontFamily = FontFamily(
                                 Font(R.font.regular, FontWeight.Normal)
                             )
@@ -241,7 +242,7 @@ fun CustomButton(navController: NavController) {
                     ) {
                         Text(
                             text = "دلار",
-                            fontSize = 23.sp,
+                            fontSize = 24.sp,
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontFamily = FontFamily(
                                     Font(R.font.regular, FontWeight.Normal)
@@ -261,9 +262,9 @@ fun CustomButton(navController: NavController) {
                     Text(
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp),
+                            .padding(bottom = 30.dp, end = 40.dp),
                         text = "قیمت لحظه ای دلار",
-                        fontSize = 18.sp,
+                        fontSize = 15.sp,
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontFamily = FontFamily(
                                 Font(R.font.regular, FontWeight.Normal)
@@ -310,7 +311,7 @@ fun CustomButton(navController: NavController) {
                     ) {
                         Text(
                             text = "ارز دیجیتال",
-                            fontSize = 23.sp,
+                            fontSize = 24.sp,
                             style = MaterialTheme.typography.bodyLarge.copy(
                                 fontFamily = FontFamily(
                                     Font(R.font.regular, FontWeight.Normal)
@@ -330,14 +331,14 @@ fun CustomButton(navController: NavController) {
                     Text(
                         modifier = Modifier
                             .align(alignment = Alignment.BottomEnd)
-                            .padding(bottom = 30.dp, end = 30.dp),
+                            .padding(bottom = 30.dp, end =40.dp),
                         text = "قیمت لحظه ای ارز",
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontFamily = FontFamily(
                                 Font(R.font.regular, FontWeight.Normal)
                             ),
 
-                            fontSize = 18.sp,
+                            fontSize = 15.sp,
 
                             )
                     )
