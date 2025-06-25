@@ -36,6 +36,7 @@ import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -47,7 +48,12 @@ fun GoldScreen(navController: NavHostController) {
     val error by viewModel.errorMessage.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchGoldData()
+        while (true) {
+            viewModel.fetchGoldData()
+            delay(1000)
+
+        }
+
 
     }
 
@@ -70,10 +76,10 @@ fun GoldScreen(navController: NavHostController) {
             val gold = goldData?.data?.golds ?: emptyList()
 
 
-            LazyColumn (
+            LazyColumn(
                 modifier = Modifier.padding(bottom = 30.dp)
 
-            ){
+            ) {
 
 
                 items(gold) { golds ->

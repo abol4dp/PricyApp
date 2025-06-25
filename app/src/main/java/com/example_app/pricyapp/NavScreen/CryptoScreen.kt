@@ -36,6 +36,7 @@ import com.example_app.pricyapp.R
 import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -45,7 +46,11 @@ fun CryptoScreen(navController: NavController) {
     val error by viewModel.errorMessage.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchGoldData()
+        while (true) {
+            viewModel.fetchGoldData()
+            delay(1000)
+        }
+
     }
 
 
