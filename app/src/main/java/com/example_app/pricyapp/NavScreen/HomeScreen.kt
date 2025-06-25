@@ -51,6 +51,7 @@ fun HomeScreen(navController: NavController, viewModel: _root_ide_package_.com.e
 
 
     Box(
+
         modifier = Modifier.background(mainBackColor)
 
     ) {
@@ -71,7 +72,11 @@ fun CustomTime(viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewM
 
 
     LaunchedEffect(Unit) {
-        viewModel.fetchTimeData()
+        while (true){
+            viewModel.fetchTimeData()
+            delay(1000)
+        }
+
     }
 
     Column(
