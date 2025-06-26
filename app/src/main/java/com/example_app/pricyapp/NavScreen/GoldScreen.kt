@@ -50,7 +50,7 @@ fun GoldScreen(navController: NavHostController) {
     LaunchedEffect(Unit) {
         while (true) {
             viewModel.fetchGoldData()
-            delay(1000)
+            delay(30000)
 
         }
 

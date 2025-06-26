@@ -48,7 +48,7 @@ fun CurrencyScreen(navController: NavController) {
     LaunchedEffect(Unit) {
         while (true){
             viewModel.fetchGoldData()
-            delay(1000)
+            delay(30000)
         }
 
     }
