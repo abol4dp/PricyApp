@@ -12,6 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,25 +22,27 @@ class ViewModel @Inject constructor(
     private val timeRepository: TimeApiRepository
 ) : ViewModel() {
     private val _goldData = MutableStateFlow<GoldModel?>(null)
-    val goldData: StateFlow<GoldModel?> get() = _goldData
+    val goldData: StateFlow<GoldModel?>  = _goldData.asStateFlow()
 
     private val _errorMessage = MutableStateFlow<String?>(null)
-    val errorMessage: StateFlow<String?> get() = _errorMessage
+    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
     private val _currencyData = MutableStateFlow<GoldModel?>(null)
-    val currencyData: StateFlow<GoldModel?> get() = _currencyData
+    val currencyData: StateFlow<GoldModel?> = _currencyData.asStateFlow()
 
     private val _cryptoData = MutableStateFlow<GoldModel?>(null)
-    val cryptoData: StateFlow<GoldModel?> get() = _cryptoData
+    val cryptoData: StateFlow<GoldModel?>  = _cryptoData.asStateFlow()
 
     private val _timeData = MutableStateFlow<DateModel?>(null)
-    val timeData: StateFlow<DateModel?> get() = _timeData
+    val timeData: StateFlow<DateModel?> = _timeData.asStateFlow()
+
+
 
     fun fetchGoldData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = repository.getData()
-                result.onSuccess { data ->
+                result. onSuccess{ data ->
                     _goldData.value = data
                     _currencyData.value = data
                     _cryptoData.value = data
