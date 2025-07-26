@@ -20,9 +20,7 @@ class GoldApiRepository @Inject constructor(
             Result.failure(e)
         }
 
-
     }
-
 
 }
 
