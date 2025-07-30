@@ -1,13 +1,15 @@
 package com.example_app.pricyapp.navcomponent
 
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example_app.pricyapp.NavScreen.CryptoScreen
-import com.example_app.pricyapp.NavScreen.GoldScreen
+
 import com.example_app.pricyapp.NavScreen.HomeScreen
 import com.example_app.pricyapp.NavScreen.CurrencyScreen
+import com.example_app.pricyapp.NavScreen.GoldScreen
 import com.example_app.pricyapp.ext.SealedScreenName
 import com.example_app.pricyapp.mvvm.ViewModel
 
