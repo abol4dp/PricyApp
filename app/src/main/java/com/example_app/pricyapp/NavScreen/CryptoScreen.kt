@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,7 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example_app.pricyapp.R
+import com.example_app.pricyapp.ext.ShimmerLoader
 import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
@@ -44,11 +47,15 @@ fun CryptoScreen(navController: NavController) {
     val viewModel: _root_ide_package_.com.example_app.pricyapp.mvvm.ViewModel = hiltViewModel()
     val cryptoData by viewModel.cryptoData.collectAsState()
     val error by viewModel.errorMessage.collectAsState()
+    val shimmerLoader = remember { ShimmerLoader() }
 
     LaunchedEffect(Unit) {
         while (true) {
+            shimmerLoader.startLoading()
             viewModel.fetchGoldData()
-            delay(30000)
+            delay(1500)
+            shimmerLoader.stopLoading()
+            delay(40000)
         }
 
     }
@@ -79,53 +86,58 @@ fun CryptoScreen(navController: NavController) {
 
 
                 items(crypto) { crypto ->
+                    shimmerLoader.ShimmerListItem(
 
-                    Column(
-                        modifier = Modifier
-                            .padding(top = 30.dp)
-                            .padding(horizontal = 5.dp),
-                    ) {
+                        contentAfterLoading = {
 
-                        Text(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(end = 10.dp),
-                            textAlign = TextAlign.End,
-                            text = crypto.label,
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                fontFamily = FontFamily(
-                                    Font(R.font.thin, FontWeight.Normal)
+
+                            Column(
+                                modifier = Modifier
+                                    .padding(top = 30.dp)
+                                    .padding(horizontal = 5.dp),
+                            ) {
+
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(end = 10.dp),
+                                    textAlign = TextAlign.End,
+                                    text = crypto.label,
+                                    style = MaterialTheme.typography.bodyLarge.copy(
+                                        fontFamily = FontFamily(
+                                            Font(R.font.thin, FontWeight.Normal)
+                                        )
+                                    ),
+                                    color = smallfontcolor,
+                                    fontSize = 16.sp
                                 )
-                            ),
-                            color = smallfontcolor,
-                            fontSize = 16.sp
-                        )
 
 
-                        Spacer(modifier = Modifier.height(3.dp))
+                                Spacer(modifier = Modifier.height(3.dp))
 
-                        val priceLong = try {
-                            crypto.price.toLong()
-                        } catch (e: NumberFormatException) {
-                            0L
+                                val priceLong = try {
+                                    crypto.price.toLong()
+                                } catch (e: NumberFormatException) {
+                                    0L
+                                }
+                                val formattedPrice = DecimalFormat("####").format(priceLong)
+                                Text(
+                                    modifier = Modifier.fillMaxSize(),
+                                    textAlign = TextAlign.End,
+                                    text = " $formattedPrice ",
+                                    style = MaterialTheme.typography.bodyLarge.copy(
+                                        fontFamily = FontFamily(
+                                            Font(R.font.regular, FontWeight.Normal)
+                                        )
+                                    ),
+                                    color = Color.White, fontSize = 40.sp
+
+                                )
+                            }
                         }
-                        val formattedPrice = DecimalFormat("####").format(priceLong)
-                        Text(
-                            modifier = Modifier.fillMaxSize(),
-                            textAlign = TextAlign.End,
-                            text = " $formattedPrice ",
-                            style = MaterialTheme.typography.bodyLarge.copy(
-                                fontFamily = FontFamily(
-                                    Font(R.font.regular, FontWeight.Normal)
-                                )
-                            ),
-                            color = Color.White, fontSize = 40.sp
-
-                        )
-                    }
+                    )
 
                 }
-
             }
 
         } else {
@@ -136,8 +148,7 @@ fun CryptoScreen(navController: NavController) {
                     color = MaterialTheme.colorScheme.error
                 )
             } else
-                CircularProgressIndicator()
-
+                ShimmerLoader()
 
         }
     }
