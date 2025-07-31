@@ -54,7 +54,7 @@ fun GoldScreen(navController: NavHostController) {
         while (true) {
             shimmerLoader.startLoading()
             viewModel.fetchGoldData()
-            delay(1500)
+            delay(2000)
             shimmerLoader.stopLoading()
             delay(40000)
         }
@@ -145,7 +145,8 @@ fun GoldScreen(navController: NavHostController) {
                 )
 
 
-            }
+            } else
+          shimmerLoader
 
         }
 
