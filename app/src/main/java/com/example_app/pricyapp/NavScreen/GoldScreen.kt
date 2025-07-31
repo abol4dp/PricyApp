@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -35,7 +34,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example_app.pricyapp.R
 import com.example_app.pricyapp.ext.ShimmerLoader
-import com.example_app.pricyapp.mvvm.ViewModel
 import com.example_app.pricyapp.ui.theme.mainBackColor
 import com.example_app.pricyapp.ui.theme.smallfontcolor
 import kotlinx.coroutines.delay
@@ -146,7 +144,7 @@ fun GoldScreen(navController: NavHostController) {
 
 
             } else
-          shimmerLoader
+                shimmerLoader
 
         }
 

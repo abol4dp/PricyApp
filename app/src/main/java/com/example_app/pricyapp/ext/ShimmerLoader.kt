@@ -152,7 +152,7 @@ class ShimmerLoader {
 private fun Modifier.shimmerBackground(
     size: IntSize, startOffsetX: Float, onSizeChanged: (IntSize) -> Unit
 ): Modifier = composed {
-    var localSize by remember { mutableStateOf(size) } // متغیر محلی با var
+    var localSize by remember { mutableStateOf(size) }
     background(
         brush = Brush.linearGradient(
             colors = listOf(
@@ -164,10 +164,10 @@ private fun Modifier.shimmerBackground(
             end = Offset(startOffsetX + localSize.width.toFloat(), localSize.height.toFloat())
         )
     ).onGloballyPositioned { layoutCoordinates ->
-            val newSize = layoutCoordinates.size
-            if (newSize != localSize) {
-                onSizeChanged(newSize)
-                localSize = newSize
-            }
+        val newSize = layoutCoordinates.size
+        if (newSize != localSize) {
+            onSizeChanged(newSize)
+            localSize = newSize
         }
+    }
 }
