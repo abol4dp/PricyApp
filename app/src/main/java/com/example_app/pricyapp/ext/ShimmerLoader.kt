@@ -58,10 +58,7 @@ class ShimmerLoader {
 
     @Composable
     fun ShimmerListItem(
-
-
         contentAfterLoading: @Composable () -> Unit, modifier: Modifier = Modifier
-
     ) {
 
 
@@ -148,6 +145,9 @@ class ShimmerLoader {
         }
     }
 }
+
+
+
 
 private fun Modifier.shimmerBackground(
     size: IntSize, startOffsetX: Float, onSizeChanged: (IntSize) -> Unit
