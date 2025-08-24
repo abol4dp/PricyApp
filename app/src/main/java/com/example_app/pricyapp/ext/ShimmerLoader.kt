@@ -1,5 +1,5 @@
 package com.example_app.pricyapp.ext
-// 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
+
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.TweenSpec
